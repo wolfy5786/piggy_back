@@ -1,10 +1,9 @@
 package com.piggyback.repository;
 
-import com.piggyback.model.Cab;
+import com.piggyback.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CabRepositary extends JpaRepository<Cab,Integer> {
-
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 }

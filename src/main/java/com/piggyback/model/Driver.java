@@ -14,8 +14,9 @@ public class Driver{
     @Column(name="user_id")
     Integer user_id;
 
-    @Column(name="assigned_cab_id")
-    Integer assignedCabId;
+    @OneToOne
+    @JoinColumn(name="cab_id")
+    Cab cab;
 
     @Column(name="driver_rating")
     Float driver_rating;

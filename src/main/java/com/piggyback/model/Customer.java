@@ -11,7 +11,7 @@ public class Customer
     User user;
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     Integer user_id;
 
     @Column(name="customer_rating")

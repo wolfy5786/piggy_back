@@ -20,8 +20,9 @@ public class Trip{
     @JoinColumn(name = "driver_id", referencedColumnName = "user_id")
     Driver driver;
 
-    @Column(name="cab_id", nullable = false)
-    Integer cab_id;
+    @ManyToOne
+    @JoinColumn(name="cab_id")
+    Cab cab;
 
     @Column(name="fare")
     Float fare;

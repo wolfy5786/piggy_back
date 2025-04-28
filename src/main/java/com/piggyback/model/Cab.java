@@ -13,10 +13,6 @@ public class Cab{
     @Column(name="cab_id")
     Integer cab_id;
 
-    @OneToOne
-    @JoinColumn(name = "driver_id", referencedColumnName = "user_id")
-    Driver driver;
-
     @Column(name="model")
     String model;
 

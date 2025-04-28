@@ -1,17 +1,17 @@
 package com.piggyback.service;
 
 import com.piggyback.model.Cab;
-import com.piggyback.repository.CabRepositary;
+import com.piggyback.repository.CabRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 public class CabService {
-    private final CabRepositary cabRepositary;
+    private final CabRepository cabRepository;
 
     @Autowired
-    public CabService(CabRepositary cabRepositary)
+    public CabService(CabRepository cabRepository)
     {
-        this.cabRepositary = cabRepositary;
+        this.cabRepository = cabRepository;
     }
 
 
