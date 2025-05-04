@@ -10,20 +10,29 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    final UserRepository userRepository;
+
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository)
+    {
         this.userRepository = userRepository;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 
     public Optional<User> getUserById(Integer userId) {
         return userRepository.findById(userId);
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
+//    public User saveUser(User user)
+//    {
+//        user.setCreatedAt(java.time.LocalDateTime.now());
+//        user.setUpdatedAt(java.time.LocalDateTime.now());
+//        return userRepository.save(user);
+//    }
 
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);  // Default method from JpaRepository

@@ -1,57 +1,106 @@
 package com.piggyback.model;
 
-import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import lombok.Data;
 
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "trip")
-public class Trip{
+public class Trip {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="trip_id")
-    Integer trip_id;
+    private Integer tripId;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "user_id")
-    Customer customer;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "driver_id", referencedColumnName = "user_id")
-    Driver driver;
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
 
-    @ManyToOne
-    @JoinColumn(name="cab_id")
-    Cab cab;
+    private Double fare;
 
-    @Column(name="fare")
-    Float fare;
-
-    @Column(name="tips")
-    Float tips;
-
-    @Column(name="driver_rating_given")
-    Float driver_rating_given;
-
-    @Column(name="customer_rating_given")
-    Float customer_rating_given;
+    private String source;
+    private String destination;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="trip_status")
-    Trip_Status trip_status;
+    private Trip_Status status;
 
-    @Column(name="date_time")
-    LocalDateTime date_time;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    @Column(name="pickup")
-    String pickup;
+    public Trip(Customer customer, Driver driver, double fare, String source, String destination)
+    {
+        this.customer = customer;
+        this.driver= driver;
+        this.fare = fare;
+        this.source = source;
+        this.destination = destination;
+        this.status = Trip_Status.ONGOING;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 
-    @Column(name="destination")
-    String destination;
+    public Double getFare() {
+        return fare;
+    }
 
-    @Column(name="created_at")
-    LocalDateTime created_at;
+    public void setFare(Double fare) {
+        this.fare = fare;
+        this.setUpdatedAt(LocalDateTime.now());
+    }
 
-    @Column(name="updated_at")
-    LocalDateTime updated_at;
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+        this.setUpdatedAt(LocalDateTime.now());
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+        this.setUpdatedAt(LocalDateTime.now());
+    }
+
+    public Trip_Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Trip_Status status) {
+        this.status = status;
+        this.setUpdatedAt(LocalDateTime.now());
+    }
+
+    public Integer getTripId() {
+        return tripId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

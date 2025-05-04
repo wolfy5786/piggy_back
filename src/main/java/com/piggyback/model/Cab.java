@@ -1,27 +1,52 @@
 package com.piggyback.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "cab")
-public class Cab{
+public class Cab {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="cab_id")
-    Integer cab_id;
+    private Integer cabId;
 
-    @Column(name="model")
-    String model;
+    private String model;
+    private String licensePlate;
 
-    @Column(name="license_plate")
-    String license_plate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    @Column(name="created_at")
-    LocalDateTime created_at;
+    @JsonCreator
+    public Cab(@JsonProperty("model") String model,
+               @JsonProperty("licensePlate") String licensePlate)
+    {
+        this.model = model;
+        this.licensePlate = licensePlate;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
 
-    @Column(name="updated_at")
-    LocalDateTime updated_at;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+        this.updatedAt = LocalDateTime.now();
+    }
 }

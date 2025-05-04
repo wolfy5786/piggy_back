@@ -1,19 +1,36 @@
 package com.piggyback.model;
-import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customer")
-public class Customer
-{
-    @OneToOne
-    @MapsId
-    @JoinColumn(name="user_id")
-    User user;
+public class Customer extends User {
 
-    @Id
-    @Column(name = "user_id", nullable = false)
-    Integer user_id;
+    private Double customerRating;
 
-    @Column(name="customer_rating")
-    Float customer_rating;
+    @JsonCreator
+    public Customer(@JsonProperty("name") String name,
+                    @JsonProperty("username") String username,
+                    @JsonProperty("password") String password,
+                    @JsonProperty("email") String email,
+                    @JsonProperty("phone") Long phone)
+    {
+        super(name, username, password, email, phone, Role.CUSTOMER);
+    }
+
+    public Double getCustomerRating() {
+        return customerRating;
+    }
+
+    public void setCustomerRating(Double customerRating) {
+        this.customerRating = customerRating;
+        this.setUpdatedAt(LocalDateTime.now());
+    }
 }

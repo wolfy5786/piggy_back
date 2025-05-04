@@ -1,6 +1,6 @@
 package com.piggyback.model;
 
-enum Role{
+public enum Role{
     CUSTOMER,
     DRIVER,
     ADMIN
