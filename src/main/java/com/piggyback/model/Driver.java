@@ -45,6 +45,6 @@ public class Driver extends User {
 
     public void setDriverStatus(Driver_Status driverStatus) {
         this.driverStatus = driverStatus;
-        this.setUpdatedAt(LocalDateTime.now());
+        //this.setUpdatedAt(LocalDateTime.now());
     }
 }

@@ -31,6 +31,6 @@ public class Customer extends User {
 
     public void setCustomerRating(Double customerRating) {
         this.customerRating = customerRating;
-        this.setUpdatedAt(LocalDateTime.now());
+        //this.setUpdatedAt(LocalDateTime.now());
     }
 }

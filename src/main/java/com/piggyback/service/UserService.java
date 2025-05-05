@@ -10,8 +10,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    final UserRepository userRepository;
-
+    private UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository)
@@ -27,12 +26,6 @@ public class UserService {
         return userRepository.findById(userId);
     }
 
-//    public User saveUser(User user)
-//    {
-//        user.setCreatedAt(java.time.LocalDateTime.now());
-//        user.setUpdatedAt(java.time.LocalDateTime.now());
-//        return userRepository.save(user);
-//    }
 
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);  // Default method from JpaRepository

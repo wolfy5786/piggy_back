@@ -5,6 +5,8 @@ import com.piggyback.repository.CabRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class CabService {
@@ -15,25 +17,33 @@ public class CabService {
     {
         this.cabRepository = cabRepository;
     }
-    public Cab saveCab(Cab cab) {
-        return cabRepository.save(cab);
+    public Cab createCab(Cab cab) {
+        if (!cabRepository.findByLicensePlate(cab.getLicensePlate()).isPresent()) {
+            return cabRepository.save(cab);
+        }
+        return null;
     }
-
-    public Optional<Cab> getCabById(Integer cabId) {
-        return cabRepository.findById(cabId);
+    public boolean update(Cab cab)
+    {
+        if(cabRepository.findByLicensePlate(cab.getLicensePlate()).isPresent()) {
+            Cab updatedRecord = cabRepository.findByLicensePlate(cab.getLicensePlate()).get().copyRecords(cab);
+            updatedRecord.setUpdatedAt(LocalDateTime.now());
+            cabRepository.save(updatedRecord);
+            return true;
+        }
+        return false;
     }
 
     public Iterable<Cab> getAllCabs() {
         return cabRepository.findAll();
     }
 
-    public void deleteCab(Integer cabId) {
-        cabRepository.deleteById(cabId);
+    public boolean deleteCab(Cab cab) {
+        if(cabRepository.findByLicensePlate(cab.getLicensePlate()).isPresent()) {
+            cabRepository.delete(cabRepository.findByLicensePlate(cab.getLicensePlate()).get());
+            return true;
+        }
+        return false;
     }
-
-    public boolean cabExists(Integer cabId) {
-        return cabRepository.existsById(cabId);
-    }
-
 
 }

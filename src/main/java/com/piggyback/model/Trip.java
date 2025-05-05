@@ -50,7 +50,7 @@ public class Trip {
 
     public void setFare(Double fare) {
         this.fare = fare;
-        this.setUpdatedAt(LocalDateTime.now());
+        //this.setUpdatedAt(LocalDateTime.now());
     }
 
     public String getSource() {
@@ -59,7 +59,7 @@ public class Trip {
 
     public void setSource(String source) {
         this.source = source;
-        this.setUpdatedAt(LocalDateTime.now());
+        //this.setUpdatedAt(LocalDateTime.now());
     }
 
     public String getDestination() {
@@ -68,7 +68,7 @@ public class Trip {
 
     public void setDestination(String destination) {
         this.destination = destination;
-        this.setUpdatedAt(LocalDateTime.now());
+        //this.setUpdatedAt(LocalDateTime.now());
     }
 
     public Trip_Status getStatus() {
@@ -77,7 +77,7 @@ public class Trip {
 
     public void setStatus(Trip_Status status) {
         this.status = status;
-        this.setUpdatedAt(LocalDateTime.now());
+        //this.setUpdatedAt(LocalDateTime.now());
     }
 
     public Integer getTripId() {

@@ -38,7 +38,7 @@ public class Cab {
 
     public void setModel(String model) {
         this.model = model;
-        this.updatedAt = LocalDateTime.now();
+        //this.updatedAt = LocalDateTime.now();
     }
 
     public String getLicensePlate() {
@@ -47,6 +47,27 @@ public class Cab {
 
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
-        this.updatedAt = LocalDateTime.now();
+        //this.updatedAt = LocalDateTime.now();
+    }
+
+    public Integer getCabId() {
+        return cabId;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+    public Cab copyRecords(Cab cab){
+        this.model = cab.model;
+        return this;
     }
 }

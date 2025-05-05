@@ -21,5 +21,13 @@ public class Admin extends User {
                  @JsonProperty("phone") Long phone) {
         super(name, username, password, email, phone, Role.ADMIN);
     }
+    public Admin copy_records(Admin admin)
+    {
+        this.setEmail(admin.getEmail());
+        this.setName(admin.getName());
+        this.setPassword(admin.getPassword());
+        this.setPhone(admin.getPhone());
+        return this;
+    }
 
 }
