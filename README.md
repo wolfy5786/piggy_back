@@ -86,24 +86,4 @@ A full-stack cab booking system built with **Spring Boot**, **Java**, **PostgreS
 | `GET`  | `/api/rides/{rideId}`  | Get ride status         |
 | `DELETE` | `/api/rides/cancel`  | Cancel an active booking |
 
-> Full API list available in Swagger UI.
-
----
-
-## 📸 Screenshots *(Optional)*
-
-_Add screenshots or demo GIFs here if available._
-
----
-
-## 🐳 Docker Deployment
-
-Use the provided `docker-compose.yml` to spin up the entire system:
-```bash
-docker-compose up --build
-```
-
-This will start:
-- Spring Boot server on port `8080`
-- PostgreSQL database on port `5432`
 
