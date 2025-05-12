@@ -47,4 +47,12 @@ public class Driver extends User {
         this.driverStatus = driverStatus;
         //this.setUpdatedAt(LocalDateTime.now());
     }
+    public Driver copy_records(Driver driver)
+    {
+        this.setEmail(driver.getEmail());
+        this.setName(driver.getName());
+        this.setPassword(driver.getPassword());
+        this.setPhone(driver.getPhone());
+        return this;
+    }
 }

@@ -8,6 +8,7 @@ import com.piggyback.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class CustomerService {
@@ -23,8 +24,23 @@ public class CustomerService {
         return customerRepository.findById(userId);
     }
 
-    public Customer saveCustomer(Customer customer) {
-        return customerRepository.save(customer);
+    public Customer createCustomer(Customer customer) {
+        if (!customerRepository.findByUsername(customer.getUsername()).isPresent())
+        {
+            return customerRepository.save(customer);
+        }
+        return null;
+    }
+    public boolean updateCustomer(Customer customer)
+    {
+        if(customerRepository.findByUsername(customer.getUsername()).isPresent())
+        {
+            Customer new_record = customerRepository.findByUsername(customer.getUsername()).get().copy_records(customer);
+            new_record.setUpdatedAt(LocalDateTime.now());
+            customerRepository.save(new_record);
+            return true;
+        }
+        return false;
     }
 
     public Iterable<Customer> getAllCustomers() {

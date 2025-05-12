@@ -33,4 +33,13 @@ public class Customer extends User {
         this.customerRating = customerRating;
         //this.setUpdatedAt(LocalDateTime.now());
     }
+
+    public Customer copy_records(Customer customer)
+    {
+        this.setEmail(customer.getEmail());
+        this.setName(customer.getName());
+        this.setPassword(customer.getPassword());
+        this.setPhone(customer.getPhone());
+        return this;
+    }
 }
