@@ -5,6 +5,7 @@ import com.piggyback.repository.CustomerRepository;
 import com.piggyback.model.Customer;
 
 import com.piggyback.repository.CustomerRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class CustomerService {
         }
         return null;
     }
-    public boolean updateCustomer(Customer customer)
+    public boolean updateCustomer(@NotNull Customer customer)
     {
         if(customerRepository.findByUsername(customer.getUsername()).isPresent())
         {
@@ -47,8 +48,24 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void deleteCustomer(Integer userId) {
-        customerRepository.deleteById(userId);
+    public boolean deleteCustomer(Customer customer) {
+        var cust = customerRepository.findByUsername(customer.getUsername());
+        if (cust.isPresent())
+        {
+            customerRepository.delete(cust.get());
+            return true;
+        }
+        return false;
+    }
+
+    public Customer getCustomerByUsername(String username)
+    {
+        var cust = customerRepository.findByUsername(username);
+        if(cust.isPresent())
+        {
+            return cust.get();
+        }
+        return null;
     }
 
     public boolean customerExists(Integer userId) {

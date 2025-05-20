@@ -32,6 +32,14 @@ public class Cab {
 
     }
 
+    @JsonCreator
+    public Cab(@JsonProperty("licensePlate") String licensePlate)
+    {
+        this.licensePlate = licensePlate;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
     public String getModel() {
         return model;
     }

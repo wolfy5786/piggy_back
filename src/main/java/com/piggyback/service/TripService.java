@@ -16,9 +16,6 @@ public class TripService {
     {
         this.tripRepository = tripRepository;
     }
-    public Trip saveTrip(Trip trip) {
-        return tripRepository.save(trip);
-    }
 
     public Optional<Trip> getTripById(Integer tripId) {
         return tripRepository.findById(tripId);
@@ -28,12 +25,10 @@ public class TripService {
         return tripRepository.findAll();
     }
 
-    public void deleteTrip(Integer tripId) {
-        tripRepository.deleteById(tripId);
-    }
-
     public boolean tripExists(Integer tripId) {
         return tripRepository.existsById(tripId);
     }
+
+
 
 }

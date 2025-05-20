@@ -21,6 +21,10 @@ public class Trip {
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
+    @ManyToOne
+    @JoinColumn(name = "cab_id")
+    private Cab cab;
+
     private Double fare;
 
     private String source;

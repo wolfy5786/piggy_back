@@ -30,14 +30,14 @@ public class AdminService {
         return null;
     }
 
-    public Admin createAdmin (Admin admin) {
+    public Admin createAdmin (@NotNull Admin admin) {
         if (!adminRepository.findByUsername(admin.getUsername()).isPresent())// check if already exists
         {
             return adminRepository.save(admin);
         }
         return null;
     }
-    public boolean deleteAdmin(Admin admin)
+    public boolean deleteAdmin(@NotNull Admin admin)
     {
         if (adminRepository.findByUsername(admin.getUsername()).isPresent()) {
             adminRepository.delete(adminRepository.findByUsername(admin.getUsername()).get());
@@ -58,11 +58,11 @@ public class AdminService {
         return false;
     }
 
-    public Optional<Admin> getAdminByEmail(String email) //write if condtion?
+    public Admin getAdminByEmail(String email)
     {
         if(adminRepository.findByEmail(email).isPresent())
         {
-            return adminRepository.findByEmail(email);
+            return adminRepository.findByEmail(email).get();
         }
         return null;
     }
