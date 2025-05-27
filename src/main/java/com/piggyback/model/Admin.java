@@ -30,4 +30,8 @@ public class Admin extends User {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

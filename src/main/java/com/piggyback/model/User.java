@@ -1,15 +1,11 @@
 package com.piggyback.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-@Data
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 
@@ -28,9 +24,15 @@ public abstract class User {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    public User()
+    {
+    }
 
-
-    public User(String name, String username, String password, String email, long phone, Role role) {
+    public User(String name,
+                String username,
+                String password,
+                String email,
+                Long phone, Role role) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -39,11 +41,6 @@ public abstract class User {
         this.role = role;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-    }
-
-    public User()
-    {
-
     }
 
     public Integer getUserId() {
@@ -106,4 +103,18 @@ public abstract class User {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", role=" + role +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

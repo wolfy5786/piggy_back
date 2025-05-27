@@ -1,10 +1,12 @@
 package com.piggyback.controller;
 
+import com.piggyback.model.Admin;
 import com.piggyback.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -23,4 +25,21 @@ public class AdminController {
         return  "Hey there";
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) throws Exception {
+        System.out.println("got my request");
+        System.out.println(admin.toString());
+        if (admin==null) //change exception type
+        {
+            throw new Exception("admin object null");
+        }
+        Admin result = adminService.createAdmin(admin);
+
+        if (result==null)
+        {
+            System.out.println("admin obejct exist");
+            return new ResponseEntity<>(result,HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<Admin>(result, HttpStatus.CREATED);
+    }
 }
