@@ -1,12 +1,15 @@
 package com.piggyback.controller;
 
 import com.piggyback.model.Admin;
+import com.piggyback.model.User;
 import com.piggyback.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -41,5 +44,12 @@ public class AdminController {
             return new ResponseEntity<>(result,HttpStatus.CONFLICT);
         }
         return new ResponseEntity<Admin>(result, HttpStatus.CREATED);
+    }
+
+    @GetMapping("all_users")
+    public ResponseEntity<List<User>> fetchAllUsers()
+    {
+        List<User> list =null;
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }
