@@ -1,0 +1,5 @@
+Intorduce DTO to lossen coupling
+Build JWT OAuth spring security
+build controllers
+build restcontrolleradvice, exception handlers,
+Validate data in controllers
