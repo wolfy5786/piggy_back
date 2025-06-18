@@ -1,5 +1,6 @@
 package com.piggyback.controller;
 
+import com.piggyback.dto.AdminDTO;
 import com.piggyback.model.Admin;
 import com.piggyback.model.User;
 import com.piggyback.service.AdminService;
@@ -29,21 +30,22 @@ public class AdminController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) throws Exception {
-        System.out.println("got my request");
-        System.out.println(admin.toString());
-        if (admin==null) //change exception type
-        {
-            throw new Exception("admin object null");
-        }
-        Admin result = adminService.createAdmin(admin);
-
-        if (result==null)
-        {
-            System.out.println("admin object exist");
-            return new ResponseEntity<>(result,HttpStatus.CONFLICT);
-        }
-        return new ResponseEntity<Admin>(result, HttpStatus.CREATED);
+    public ResponseEntity<Admin> createAdmin(@RequestBody AdminDTO adminDTO) throws Exception {
+//        System.out.println("got my request");
+//        System.out.println(admin.toString());
+//        if (admin==null) //change exception type
+//        {
+//            throw new Exception("admin object null");
+//        }
+//        Admin result = adminService.createAdmin(admin);
+//
+//        if (result==null)
+//        {
+//            System.out.println("admin object exist");
+//            return new ResponseEntity<>(result,HttpStatus.CONFLICT);
+//        }
+//        return new ResponseEntity<Admin>(result, HttpStatus.CREATED);
+        return null;
     }
 
     @GetMapping("all_users")

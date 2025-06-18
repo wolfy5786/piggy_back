@@ -1,5 +1,6 @@
 package com.piggyback.service;
 
+import com.piggyback.dto.AdminDTO;
 import com.piggyback.mapper.AdminMapper;
 import com.piggyback.model.Admin;
 import com.piggyback.repository.AdminRepository;
@@ -26,46 +27,49 @@ public class AdminService {
     }
 
 
-    public Admin getAdminByUsername(String username) {
-        if(adminRepository.findByUsername(username).isPresent()) {
-            return adminRepository.findByUsername(username).get();
+    public AdminDTO getAdminByUsername(String username) {
+        Optional <Admin> admin = adminRepository.findByUsername(username);
+        if(admin.isPresent()) {
+            return adminMapper.toDTO(admin.get());
         }
-        return null;
+        return null; // should we return null?
     }
 
-    public Admin createAdmin (@NotNull Admin admin) {
-        if (!adminRepository.findByUsername(admin.getUsername()).isPresent())// check if already exists
+    public void createAdmin (@NotNull AdminDTO adminDTO) { //switch to AdminDto here
+        Optional<Admin> admin = adminRepository.findByUsername(adminDTO.getUsername());
+        if (!admin.isPresent())// check if already exists, change to throws exception
         {
-            return adminRepository.save(admin);
+            adminMapper.toDTO(adminRepository.save(adminMapper.newEntity(adminDTO)));
         }
-        return null;
     }
-    public boolean deleteAdmin(@NotNull Admin admin)
+    public boolean deleteAdmin(@NotNull AdminDTO adminDTO) // switch to dto
     {
-        if (adminRepository.findByUsername(admin.getUsername()).isPresent()) {
-            adminRepository.delete(adminRepository.findByUsername(admin.getUsername()).get());
+        Optional<Admin> admin = adminRepository.findByUsername(adminDTO.getUsername());
+        if (admin.isPresent()) {
+            adminRepository.delete(admin.get());
             return true;
         }
         return false;
     }
 
-    public boolean updateAdmin(@NotNull Admin admin)
+    public boolean updateAdmin(@NotNull AdminDTO adminDTO)
     {
-        if (adminRepository.findByUsername(admin.getUsername()).isPresent())
+        Optional <Admin> admin =  adminRepository.findByUsername(adminDTO.getUsername());
+        if (admin.isPresent())
         {
-            Admin updated_record = adminRepository.findByUsername(admin.getUsername()).get().copy_records(admin);
-            updated_record.setUpdatedAt(LocalDateTime.now());
-            adminRepository.save(updated_record);
+            Admin newAdmin = adminMapper.updateEntity(adminDTO,admin.get());
+            adminRepository.save(newAdmin);
             return true;
         }
         return false;
     }
 
-    public Admin getAdminByEmail(String email)
+    public AdminDTO getAdminByEmail(String email)
     {
-        if(adminRepository.findByEmail(email).isPresent())
+        Optional<Admin> admin = adminRepository.findByEmail(email);
+        if(admin.isPresent())
         {
-            return adminRepository.findByEmail(email).get();
+            return adminMapper.toDTO(admin.get());
         }
         return null;
     }

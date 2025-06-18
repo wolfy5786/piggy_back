@@ -1,4 +1,5 @@
-Intorduce DTO to lossen coupling
+Intorduce DTO to lossen coupling - Done
+
 Build JWT OAuth spring security
 build controllers
 build restcontrolleradvice, exception handlers,
@@ -6,6 +7,15 @@ Validate data in controllers
 build buisness logic in Service
 remove setter and redundant constructors
 
+Delete the first row from Db it has null row during testing
+
+remove tripId from TripDTO
+
+introduce geolocation?
+
+change Service to lose coupling
+
+perform unit testing
 
 check these implementation and cover pros and cons
 1st Define roles in constructors in DTO,
