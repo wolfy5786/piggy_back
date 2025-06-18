@@ -1,10 +1,18 @@
 package com.piggyback.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggyback.model.Role;
 
 public class AdminDTO extends UserDTO{
 
-    public AdminDTO(String name, String username, String password, String email, Long phone, Role role) {
+    @JsonCreator
+    public AdminDTO(@JsonProperty("name") String name,
+                    @JsonProperty("username") String username,
+                    @JsonProperty("password") String password,
+                    @JsonProperty("email") String email,
+                    @JsonProperty("phone") Long phone,
+                    @JsonProperty("role") Role role) {
         super(name, username, password, email, phone, role);
     }
 
@@ -12,8 +20,6 @@ public class AdminDTO extends UserDTO{
         super(builder);
     }
 
-    public AdminDTO() {
-    }
 
     public static class Builder extends UserDTO.Builder<Builder>{
 

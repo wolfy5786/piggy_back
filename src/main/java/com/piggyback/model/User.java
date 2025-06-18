@@ -25,7 +25,7 @@ public abstract class User {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    public User()
+    public User() //no args constructor for JPA repository
     {
     }
 

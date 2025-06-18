@@ -40,7 +40,7 @@ public class AdminController {
 
         if (result==null)
         {
-            System.out.println("admin obejct exist");
+            System.out.println("admin object exist");
             return new ResponseEntity<>(result,HttpStatus.CONFLICT);
         }
         return new ResponseEntity<Admin>(result, HttpStatus.CREATED);

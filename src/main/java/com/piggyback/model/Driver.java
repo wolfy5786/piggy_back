@@ -1,7 +1,5 @@
 package com.piggyback.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,12 +17,7 @@ public class Driver extends User {
     @Enumerated(EnumType.STRING)
     private Driver_Status driverStatus;
 
-    @JsonCreator
-    public Driver(@JsonProperty("name") String name,
-                  @JsonProperty("username") String username,
-                  @JsonProperty("password") String password,
-                  @JsonProperty("email") String email,
-                  @JsonProperty("phone") Long phone)
+    public Driver(String name, String username, String password, String email, Long phone)
     {
         super(name, username, password, email, phone, Role.DRIVER);
         this.driverStatus = Driver_Status.AWAY;
@@ -34,6 +27,9 @@ public class Driver extends User {
         super(builder);
         this.driverStatus = builder.driverStatus;
         this.driverRating = builder.driverRating;
+    }
+
+    public Driver() {
     }
 
     public Double getDriverRating() {

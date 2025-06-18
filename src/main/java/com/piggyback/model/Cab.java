@@ -33,12 +33,7 @@ public class Cab {
 
     }
 
-    @JsonCreator
-    public Cab(@JsonProperty("licensePlate") String licensePlate)
-    {
-        this.licensePlate = licensePlate;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+    public Cab() { //no args constructor for JPA repository
     }
 
     public String getModel() {

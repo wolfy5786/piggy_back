@@ -1,10 +1,15 @@
 package com.piggyback.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CabDTO {
     private String model;
     private String licensePlate;
 
-    public CabDTO(String model, String licensePlate) {
+    @JsonCreator
+    public CabDTO(@JsonProperty("model") String model,
+                  @JsonProperty("licensePlate") String licensePlate) {
         this.model = model;
         this.licensePlate = licensePlate;
     }

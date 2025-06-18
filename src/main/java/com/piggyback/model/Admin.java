@@ -5,20 +5,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 
 @Entity
 @Table(name = "admin")
 public class Admin extends User {
 
-    @JsonCreator
-    public Admin(@JsonProperty("name") String name,
-                 @JsonProperty("username") String username,
-                 @JsonProperty("password") String password,
-                 @JsonProperty("email") String email,
-                 @JsonProperty("phone") Long phone) {
+    public Admin(String name, String username, String password, String email, Long phone) {
         super(name, username, password, email, phone, Role.ADMIN);
     }
 
@@ -26,6 +18,10 @@ public class Admin extends User {
     {
         super(builder);
     }
+
+    public Admin() { //no args constructor for JPA repository
+    }
+
     public Admin copy_records(Admin admin)
     {
         this.setEmail(admin.getEmail());

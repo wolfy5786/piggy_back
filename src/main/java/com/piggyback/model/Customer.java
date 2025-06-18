@@ -30,6 +30,9 @@ public class Customer extends User {
         this.customerRating = builder.customerRating;
     }
 
+    public Customer() {
+    }
+
     public Double getCustomerRating() {
         return customerRating;
     }

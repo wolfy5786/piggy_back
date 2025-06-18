@@ -1,5 +1,6 @@
 package com.piggyback.service;
 
+import com.piggyback.mapper.AdminMapper;
 import com.piggyback.model.Admin;
 import com.piggyback.repository.AdminRepository;
 
@@ -15,11 +16,13 @@ public class AdminService {
 
     //@Autowired
     private AdminRepository adminRepository;
+    private AdminMapper adminMapper;
 
     @Autowired
-    public AdminService(AdminRepository adminRepository)
+    public AdminService(AdminRepository adminRepository, AdminMapper adminMapper)
     {
         this.adminRepository = adminRepository;
+        this.adminMapper = adminMapper;
     }
 
 

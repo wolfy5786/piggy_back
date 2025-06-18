@@ -1,5 +1,7 @@
 package com.piggyback.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggyback.model.Driver_Status;
 import com.piggyback.model.Role;
 
@@ -7,22 +9,24 @@ public class DriverDTO extends UserDTO{
     private Double driverRating;
     private Driver_Status driverStatus;
 
-    public DriverDTO(String name, String username, String password, String email, Long phone, Role role, Double driverRating, Driver_Status driverStatus) {
+    @JsonCreator
+    public DriverDTO(@JsonProperty("name") String name,
+                     @JsonProperty("username") String username,
+                     @JsonProperty("password") String password,
+                     @JsonProperty("email") String email,
+                     @JsonProperty("phone") Long phone,
+                     @JsonProperty("role") Role role,
+                     @JsonProperty("driverRating") Double driverRating,
+                     @JsonProperty("driverStatus") Driver_Status driverStatus) {
         super(name, username, password, email, phone, role);
         this.driverRating = driverRating;
         this.driverStatus = driverStatus;
-    }
-
-    public DriverDTO(String name, String username, String password, String email, Long phone, Role role) {
-        super(name, username, password, email, phone, role);
     }
 
     public DriverDTO(Builder builder) {
         super(builder);
     }
 
-    public DriverDTO() {
-    }
 
     public Double getDriverRating() {
         return driverRating;

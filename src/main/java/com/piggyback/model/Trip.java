@@ -51,6 +51,9 @@ public class Trip {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public Trip() {
+    }
+
     public Double getFare() {
         return fare;
     }
