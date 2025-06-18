@@ -1,5 +1,7 @@
 package com.piggyback.dto;
 
+import com.piggyback.model.Trip_Status;
+
 public class TripDTO {
     public Integer tripId; //only id being shared to the frontend
     private CustomerDTO customerDTO;
@@ -8,8 +10,9 @@ public class TripDTO {
     private Double fare;
     private String source;
     private String destination;
+    private Trip_Status trip_status;
 
-    public TripDTO(Integer tripId, CustomerDTO customerDTO, DriverDTO driverDTO, CabDTO cabDTO, Double fare, String source, String destination) {
+    public TripDTO(Integer tripId, CustomerDTO customerDTO, DriverDTO driverDTO, CabDTO cabDTO, Double fare, String source, String destination, Trip_Status trip_status) {
         this.tripId = tripId;
         this.customerDTO = customerDTO;
         this.driverDTO = driverDTO;
@@ -17,15 +20,7 @@ public class TripDTO {
         this.fare = fare;
         this.source = source;
         this.destination = destination;
-    }
-
-    public TripDTO(CustomerDTO customerDTO, DriverDTO driverDTO, CabDTO cabDTO, Double fare, String source, String destination) {
-        this.customerDTO = customerDTO;
-        this.driverDTO = driverDTO;
-        this.cabDTO = cabDTO;
-        this.fare = fare;
-        this.source = source;
-        this.destination = destination;
+        this.trip_status = trip_status;
     }
 
     public TripDTO() {
@@ -87,6 +82,14 @@ public class TripDTO {
         this.destination = destination;
     }
 
+    public Trip_Status getTrip_status() {
+        return trip_status;
+    }
+
+    public void setTrip_status(Trip_Status trip_status) {
+        this.trip_status = trip_status;
+    }
+
     @Override
     public String toString() {
         return "TripDTO{" +
@@ -97,6 +100,7 @@ public class TripDTO {
                 ", fare=" + fare +
                 ", source='" + source + '\'' +
                 ", destination='" + destination + '\'' +
+                ", trip_status=" + trip_status +
                 '}';
     }
 
@@ -108,6 +112,7 @@ public class TripDTO {
         private Double fare;
         private String source;
         private String destination;
+        private Trip_Status trip_status;
         public Builder tripId(Integer tripId)
         {
             this.tripId = tripId;
@@ -143,9 +148,14 @@ public class TripDTO {
             this.destination = destination;
             return this;
         }
+        public Builder tripStatus(Trip_Status trip_status)
+        {
+            this.trip_status = trip_status;
+            return this;
+        }
         public TripDTO build()
         {
-            TripDTO tripDTO = new TripDTO(tripId,customerDTO,driverDTO,cabDTO,fare,source,destination);
+            TripDTO tripDTO = new TripDTO(tripId,customerDTO,driverDTO,cabDTO,fare,source,destination,trip_status);
             return tripDTO;
         }
     }

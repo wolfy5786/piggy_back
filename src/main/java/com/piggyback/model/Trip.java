@@ -127,6 +127,10 @@ public class Trip {
         this.cab = cab;
     }
 
+    public Cab getCab() {
+        return cab;
+    }
+
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
@@ -155,6 +159,7 @@ public class Trip {
         private Double fare;
         private String source;
         private String destination;
+        private Trip_Status trip_status;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
         public Builder tripId(Integer tripId)
@@ -185,6 +190,11 @@ public class Trip {
         public Builder source(String source)
         {
             this.source = source;
+            return this;
+        }
+        public Builder tripStatus(Trip_Status trip_status)
+        {
+            this.trip_status = trip_status;
             return this;
         }
         public Builder createdAt(LocalDateTime createdAt)
