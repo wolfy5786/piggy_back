@@ -1,5 +1,8 @@
 package com.piggyback.model;
 
+import com.piggyback.dto.CabDTO;
+import com.piggyback.dto.CustomerDTO;
+import com.piggyback.dto.DriverDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -106,5 +109,93 @@ public class Trip {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public void setTripId(Integer tripId) {
+        this.tripId = tripId;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public void setCab(Cab cab) {
+        this.cab = cab;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "tripId=" + tripId +
+                ", customer=" + customer +
+                ", driver=" + driver +
+                ", cab=" + cab +
+                ", fare=" + fare +
+                ", source='" + source + '\'' +
+                ", destination='" + destination + '\'' +
+                ", status=" + status +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
+    public static class Builder{
+        public Integer tripId; //only id being shared to the frontend
+        private Customer customer;
+        private Driver driver;
+        private Cab cab;
+        private Double fare;
+        private String source;
+        private String destination;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+        public Builder tripId(Integer tripId)
+        {
+            this.tripId = tripId;
+            return this;
+        }
+        public Builder customer(Customer customer)
+        {
+            this.customer = customer;
+            return this;
+        }
+        public Builder driver(Driver driver)
+        {
+            this.driver = driver;
+            return this;
+        }
+        public Builder cab(Cab cab)
+        {
+            this.cab = cab;
+            return this;
+        }
+        public Builder fare(Double fare)
+        {
+            this.fare = fare;
+            return this;
+        }
+        public Builder source(String source)
+        {
+            this.source = source;
+            return this;
+        }
+        public Builder createdAt(LocalDateTime createdAt)
+        {
+            this.createdAt = createdAt;
+            return this;
+        }
+        public Builder updatedAt(LocalDateTime updatedAt)
+        {
+            this.updatedAt = updatedAt;
+            return this;
+        }
     }
 }

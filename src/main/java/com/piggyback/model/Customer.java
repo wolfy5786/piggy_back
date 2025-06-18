@@ -25,6 +25,11 @@ public class Customer extends User {
         super(name, username, password, email, phone, Role.CUSTOMER);
     }
 
+    public Customer(Builder builder) {
+        super(builder);
+        this.customerRating = builder.customerRating;
+    }
+
     public Double getCustomerRating() {
         return customerRating;
     }
@@ -41,5 +46,23 @@ public class Customer extends User {
         this.setPassword(customer.getPassword());
         this.setPhone(customer.getPhone());
         return this;
+    }
+    public static class Builder extends User.Builder<Builder>
+    {
+        Double customerRating;
+        public Builder customerRating(Double customerRating)
+        {
+            this.customerRating = customerRating;
+            return this;
+        }
+        @Override
+        public Builder self() {
+            return this;
+        }
+
+        @Override
+        public Customer build() {
+            return new Customer(this);
+        }
     }
 }

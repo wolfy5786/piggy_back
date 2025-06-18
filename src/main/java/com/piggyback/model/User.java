@@ -1,5 +1,6 @@
 package com.piggyback.model;
 
+import com.piggyback.dto.UserDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -41,6 +42,15 @@ public abstract class User {
         this.role = role;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+    }
+
+    protected User(User.Builder<?> builder) {
+        this.name = builder.name;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.email = builder.email;
+        this.phone = builder.phone;
+        this.role = builder.role;
     }
 
     public Integer getUserId() {
@@ -103,6 +113,19 @@ public abstract class User {
         this.updatedAt = updatedAt;
     }
 
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -116,5 +139,66 @@ public abstract class User {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
+    }
+    public static abstract class Builder<T extends Builder<T>>
+    {
+        private Integer userId;
+        private String name;
+        private String username;
+        private String password;
+        private String email;
+        private Long phone;
+        private Role role;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+
+        public T userId(Integer userId)
+        {
+            this.userId = userId;
+            return self();
+        }
+
+        public T name(String name)
+        {
+            this.name = name;
+            return self();
+        }
+        public T username(String username)
+        {
+            this.username = username;
+            return self();
+        }
+        public T password(String password)
+        {
+            this.password = password;
+            return self();
+        }
+        public T email(String email)
+        {
+            this.email = email;
+            return self();
+        }
+        public T phone(Long phone)
+        {
+            this.phone = phone;
+            return self();
+        }
+        public T role(Role role)
+        {
+            this.role = role;
+            return self();
+        }
+        public T createdAt(LocalDateTime createdAt)
+        {
+            this.createdAt = createdAt;
+            return self();
+        }
+        public T updatedAt(LocalDateTime updatedAt)
+        {
+            this.updatedAt = updatedAt;
+            return self();
+        }
+        public abstract T self();
+        public abstract User build();
     }
 }

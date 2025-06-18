@@ -3,3 +3,5 @@ Build JWT OAuth spring security
 build controllers
 build restcontrolleradvice, exception handlers,
 Validate data in controllers
+build buisness logic in Service
+remove setter and redundant constructors

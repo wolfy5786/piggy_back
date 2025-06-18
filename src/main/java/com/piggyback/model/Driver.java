@@ -30,6 +30,12 @@ public class Driver extends User {
         this.driverStatus = Driver_Status.AWAY;
     }
 
+    public Driver(Builder builder) {
+        super(builder);
+        this.driverStatus = builder.driverStatus;
+        this.driverRating = builder.driverRating;
+    }
+
     public Double getDriverRating() {
         return driverRating;
     }
@@ -47,6 +53,8 @@ public class Driver extends User {
         this.driverStatus = driverStatus;
         //this.setUpdatedAt(LocalDateTime.now());
     }
+
+
     public Driver copy_records(Driver driver)
     {
         this.setEmail(driver.getEmail());
@@ -54,5 +62,30 @@ public class Driver extends User {
         this.setPassword(driver.getPassword());
         this.setPhone(driver.getPhone());
         return this;
+    }
+
+    public static class Builder extends User.Builder<Builder>{
+        Driver_Status driverStatus;
+        Double driverRating;
+
+        public Builder driverStatus(Driver_Status driverStatus)
+        {
+            this.driverStatus = driverStatus;
+            return this;
+        }
+        public Builder driverRating(Double driverRating)
+        {
+            this.driverRating = driverRating;
+            return this;
+        }
+        @Override
+        public Builder self() {
+            return this;
+        }
+
+        @Override
+        public Driver build() {
+            return new Driver(this);
+        }
     }
 }

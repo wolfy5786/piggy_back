@@ -21,6 +21,11 @@ public class Admin extends User {
                  @JsonProperty("phone") Long phone) {
         super(name, username, password, email, phone, Role.ADMIN);
     }
+
+    public Admin(Builder builder)
+    {
+        super(builder);
+    }
     public Admin copy_records(Admin admin)
     {
         this.setEmail(admin.getEmail());
@@ -33,5 +38,19 @@ public class Admin extends User {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public static class Builder extends User.Builder<Builder>
+    {
+
+        @Override
+        public Builder self() {
+            return this;
+        }
+
+        @Override
+        public Admin build() {
+            return new Admin(this);
+        }
     }
 }
