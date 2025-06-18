@@ -27,6 +27,7 @@ public class Driver extends User {
         super(builder);
         this.driverStatus = builder.driverStatus;
         this.driverRating = builder.driverRating;
+        this.setRole(Role.DRIVER);
     }
 
     public Driver() {

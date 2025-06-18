@@ -13,7 +13,6 @@ public class AdminMapper {
         return new AdminDTO.Builder()
                 .name(admin.getName())
                 .email(admin.getEmail())
-                .role(admin.getRole())
                 .phone(admin.getPhone())
                 .username(admin.getUsername())
                 .password(admin.getPassword())
@@ -26,8 +25,7 @@ public class AdminMapper {
                 .username(adminDTO.getUsername())
                 .email(adminDTO.getEmail())
                 .phone(adminDTO.getPhone())
-                .password(adminDTO.getPassword())
-                .role(adminDTO.getRole()) //from Dto
+                .password(adminDTO.getPassword())//from Dto
                 .createdAt(LocalDateTime.now()) //created and updated now
                 .updatedAt(LocalDateTime.now())
                 .build(); //no id will be assigned by DB
@@ -39,7 +37,6 @@ public class AdminMapper {
                 .username(adminDTO.getUsername())
                 .email(adminDTO.getEmail())
                 .password(adminDTO.getPassword())
-                .role(adminDTO.getRole())
                 .phone(adminDTO.getPhone()) //new fields *
                 .createdAt(admin.getCreatedAt()) //from admin
                 .updatedAt(LocalDateTime.now()) //updated now

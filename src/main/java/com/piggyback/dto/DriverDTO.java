@@ -15,16 +15,16 @@ public class DriverDTO extends UserDTO{
                      @JsonProperty("password") String password,
                      @JsonProperty("email") String email,
                      @JsonProperty("phone") Long phone,
-                     @JsonProperty("role") Role role,
                      @JsonProperty("driverRating") Double driverRating,
                      @JsonProperty("driverStatus") Driver_Status driverStatus) {
-        super(name, username, password, email, phone, role);
+        super(name, username, password, email, phone, Role.DRIVER);
         this.driverRating = driverRating;
         this.driverStatus = driverStatus;
     }
 
     public DriverDTO(Builder builder) {
         super(builder);
+        this.setRole(Role.DRIVER);
     }
 
 

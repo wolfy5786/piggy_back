@@ -16,7 +16,6 @@ public class DriverMapper {
                 .username(driver.getUsername())
                 .password(driver.getPassword())
                 .phone(driver.getPhone())
-                .role(driver.getRole())
                 .driverStatus(driver.getDriverStatus())
                 .driverRating(driver.getDriverRating())
                 .build();
@@ -29,7 +28,6 @@ public class DriverMapper {
                 .username(driverDTO.getUsername())
                 .password(driverDTO.getPassword())
                 .phone(driverDTO.getPhone())
-                .role(driverDTO.getRole())
                 .driverStatus(driverDTO.getDriverStatus())
                 .driverRating(driverDTO.getDriverRating())
                 .createdAt(LocalDateTime.now()) //created just now
@@ -44,7 +42,6 @@ public class DriverMapper {
                 .username(driverDTO.getUsername())
                 .password(driverDTO.getPassword())
                 .phone(driverDTO.getPhone())
-                .role(driverDTO.getRole())
                 .driverStatus(driverDTO.getDriverStatus())
                 .driverRating(driverDTO.getDriverRating())
                 .userId(driver.getUserId()) //from Driver

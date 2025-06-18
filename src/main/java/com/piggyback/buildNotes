@@ -5,3 +5,11 @@ build restcontrolleradvice, exception handlers,
 Validate data in controllers
 build buisness logic in Service
 remove setter and redundant constructors
+
+
+check these implementation and cover pros and cons
+1st Define roles in constructors in DTO,
+2nd define setters in Builder for roles,
+3rd define setters in Dtos for roles
+4th all constructor set roles
+5h Role defined in all classes instead of inherited

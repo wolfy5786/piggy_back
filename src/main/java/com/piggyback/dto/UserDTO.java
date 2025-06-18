@@ -128,11 +128,6 @@ public abstract class UserDTO {
             return self();
         }
 
-        public T role(Role role) {
-            this.role = role;
-            return self();
-        }
-
         protected abstract T self();
 
         public abstract UserDTO build();

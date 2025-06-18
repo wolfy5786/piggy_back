@@ -1,22 +1,27 @@
 package com.piggyback.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggyback.model.Role;
 
 public class CustomerDTO extends UserDTO{
     private Double customerRating;
 
-    public CustomerDTO(String name, String username, String password, String email, Long phone, Role role, Double customerRating) {
-        super(name, username, password, email, phone, role);
+    @JsonCreator
+    public CustomerDTO(@JsonProperty("name") String name,
+                       @JsonProperty("username") String username,
+                       @JsonProperty("password") String password,
+                       @JsonProperty("email") String email,
+                       @JsonProperty("phone") Long phone,
+                       @JsonProperty("customerRating") Double customerRating) {
+        super(name, username, password, email, phone, Role.CUSTOMER);
         this.customerRating = customerRating;
-    }
-
-    public CustomerDTO(String name, String username, String password, String email, Long phone, Role role) {
-        super(name, username, password, email, phone, role);
     }
 
     private CustomerDTO(Builder builder) {
         super(builder);
         this.customerRating = builder.customerRating;
+        this.setRole(Role.CUSTOMER);
     }
 
     public CustomerDTO() {

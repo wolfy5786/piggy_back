@@ -15,7 +15,6 @@ public class CustomerMapper {
                 .email(customerDTO.getEmail())
                 .username(customerDTO.getUsername())
                 .password(customerDTO.getPassword())
-                .role(customerDTO.getRole())
                 .customerRating(customerDTO.getCustomerRating())
                 .phone(customerDTO.getPhone())
                 .createdAt(LocalDateTime.now())
@@ -29,8 +28,7 @@ public class CustomerMapper {
                 .username(customerDTO.getUsername())
                 .email(customerDTO.getEmail())
                 .password(customerDTO.getPassword())
-                .phone(customerDTO.getPhone())
-                .role(customerDTO.getRole()) //from client*
+                .phone(customerDTO.getPhone())//from client*
                 .createdAt(customer.getCreatedAt()) //from DB
                 .updatedAt(LocalDateTime.now()) //updated now
                 .userId(customer.getUserId()) //from DB
@@ -45,7 +43,6 @@ public class CustomerMapper {
                 .customerRating(customer.getCustomerRating())
                 .password(customer.getPassword())
                 .phone(customer.getPhone())
-                .role(customer.getRole())
                 .build();
     }
 }

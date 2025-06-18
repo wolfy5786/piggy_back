@@ -17,6 +17,7 @@ public class Admin extends User {
     public Admin(Builder builder)
     {
         super(builder);
+        this.setRole(Role.ADMIN);
     }
 
     public Admin() { //no args constructor for JPA repository

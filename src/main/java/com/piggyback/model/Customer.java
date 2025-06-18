@@ -28,6 +28,7 @@ public class Customer extends User {
     public Customer(Builder builder) {
         super(builder);
         this.customerRating = builder.customerRating;
+        this.setRole(Role.CUSTOMER);
     }
 
     public Customer() {
