@@ -3,8 +3,6 @@ package com.piggyback.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Data;
-import org.springframework.security.core.parameters.P;
 
 import java.time.LocalDateTime;
 
@@ -22,9 +20,8 @@ public class Cab {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    @JsonCreator
-    public Cab(@JsonProperty("model") String model,
-               @JsonProperty("licensePlate") String licensePlate)
+
+    public Cab(String model, String licensePlate)
     {
         this.model = model;
         this.licensePlate = licensePlate;
@@ -42,7 +39,6 @@ public class Cab {
 
     public void setModel(String model) {
         this.model = model;
-        //this.updatedAt = LocalDateTime.now();
     }
 
     public String getLicensePlate() {
@@ -51,7 +47,6 @@ public class Cab {
 
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
-        //this.updatedAt = LocalDateTime.now();
     }
 
     public Integer getCabId() {

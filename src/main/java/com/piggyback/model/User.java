@@ -1,6 +1,5 @@
 package com.piggyback.model;
 
-import com.piggyback.dto.UserDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
