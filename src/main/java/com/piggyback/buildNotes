@@ -17,6 +17,8 @@ change Service to lose coupling
 
 perform unit testing
 
+Test CRUD services
+
 check these implementation and cover pros and cons
 1st Define roles in constructors in DTO,
 2nd define setters in Builder for roles,

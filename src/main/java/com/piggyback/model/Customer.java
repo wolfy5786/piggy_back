@@ -40,14 +40,6 @@ public class Customer extends User {
         //this.setUpdatedAt(LocalDateTime.now());
     }
 
-    public Customer copy_records(Customer customer)
-    {
-        this.setEmail(customer.getEmail());
-        this.setName(customer.getName());
-        this.setPassword(customer.getPassword());
-        this.setPhone(customer.getPhone());
-        return this;
-    }
     public static class Builder extends User.Builder<Builder>
     {
         Double customerRating;

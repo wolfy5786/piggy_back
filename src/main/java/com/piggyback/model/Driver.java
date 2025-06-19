@@ -52,15 +52,6 @@ public class Driver extends User {
     }
 
 
-    public Driver copy_records(Driver driver)
-    {
-        this.setEmail(driver.getEmail());
-        this.setName(driver.getName());
-        this.setPassword(driver.getPassword());
-        this.setPhone(driver.getPhone());
-        return this;
-    }
-
     public static class Builder extends User.Builder<Builder>{
         Driver_Status driverStatus;
         Double driverRating;

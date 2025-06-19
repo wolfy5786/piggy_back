@@ -1,10 +1,6 @@
 package com.piggyback.model;
 
-import com.piggyback.dto.CabDTO;
-import com.piggyback.dto.CustomerDTO;
-import com.piggyback.dto.DriverDTO;
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.time.LocalDateTime;
 

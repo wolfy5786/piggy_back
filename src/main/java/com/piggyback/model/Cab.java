@@ -79,10 +79,6 @@ public class Cab {
         this.createdAt = createdAt;
     }
 
-    public Cab copyRecords(Cab cab){
-        this.model = cab.model;
-        return this;
-    }
     public static class Builder
     {
         private Integer cabId;

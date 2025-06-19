@@ -23,15 +23,6 @@ public class Admin extends User {
     public Admin() { //no args constructor for JPA repository
     }
 
-    public Admin copy_records(Admin admin)
-    {
-        this.setEmail(admin.getEmail());
-        this.setName(admin.getName());
-        this.setPassword(admin.getPassword());
-        this.setPhone(admin.getPhone());
-        return this;
-    }
-
     @Override
     public String toString() {
         return super.toString();
