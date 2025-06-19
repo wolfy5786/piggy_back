@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService { //do we need auser service?????
 
     private UserRepository userRepository;
 

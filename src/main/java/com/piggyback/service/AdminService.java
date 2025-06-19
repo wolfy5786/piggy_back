@@ -16,11 +16,11 @@ import java.util.Optional;
 public class AdminService {
 
     //@Autowired
-    private AdminRepository adminRepository;
-    private AdminMapper adminMapper;
+    private final AdminRepository adminRepository;
+    private final AdminMapper adminMapper;
 
     @Autowired
-    public AdminService(AdminRepository adminRepository, AdminMapper adminMapper)
+    public AdminService(AdminRepository adminRepository, AdminMapper adminMapper) //Spring injects there object (loose coupling)
     {
         this.adminRepository = adminRepository;
         this.adminMapper = adminMapper;

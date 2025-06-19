@@ -1,44 +1,43 @@
 package com.piggyback.service;
 
+import com.piggyback.dto.CustomerDTO;
+import com.piggyback.mapper.CustomerMapper;
 import com.piggyback.model.User;
 import com.piggyback.repository.CustomerRepository;
 import com.piggyback.model.Customer;
 
-import com.piggyback.repository.CustomerRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Service
 public class CustomerService {
-    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository)
+    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper)
     {
         this.customerRepository = customerRepository;
+        this.customerMapper = customerMapper;
     }
 
-    public Optional<Customer> getCustomerById(Integer userId) {
-        return customerRepository.findById(userId);
-    }
-
-    public Customer createCustomer(Customer customer) {
-        if (!customerRepository.findByUsername(customer.getUsername()).isPresent())
+    public boolean createCustomer(CustomerDTO customerDTO) {
+        if (!customerRepository.findByUsername(customerDTO.getUsername()).isPresent())
         {
-            return customerRepository.save(customer);
+            customerRepository.save(customerMapper.newEntity(customerDTO));
+            return true;
         }
-        return null;
+        return false;
     }
-    public boolean updateCustomer(@NotNull Customer customer)
+    public boolean updateCustomer(@NotNull CustomerDTO customerDTO)
     {
-        if(customerRepository.findByUsername(customer.getUsername()).isPresent())
+        Optional<Customer> customer = customerRepository.findByUsername(customerDTO.getUsername());
+        if(customer.isPresent())
         {
-            Customer new_record = customerRepository.findByUsername(customer.getUsername()).get().copy_records(customer);
-            new_record.setUpdatedAt(LocalDateTime.now());
-            customerRepository.save(new_record);
+            customerRepository.save(customerMapper.updateEntity(customerDTO,customer.get()));
             return true;
         }
         return false;
@@ -48,24 +47,24 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public boolean deleteCustomer(Customer customer) {
-        var cust = customerRepository.findByUsername(customer.getUsername());
-        if (cust.isPresent())
+    public boolean deleteCustomer(CustomerDTO customerDTO) {
+        Optional<Customer> customer = customerRepository.findByUsername(customerDTO.getUsername());
+        if (customer.isPresent())
         {
-            customerRepository.delete(cust.get());
+            customerRepository.delete(customer.get());
             return true;
         }
         return false;
     }
 
-    public Customer getCustomerByUsername(String username)
+    public CustomerDTO getCustomerByUsername(String username)
     {
-        var cust = customerRepository.findByUsername(username);
-        if(cust.isPresent())
+        Optional<Customer> customer = customerRepository.findByUsername(username);
+        if(customer.isPresent())
         {
-            return cust.get();
+            return customerMapper.toDTO(customer.get());
         }
-        return null;
+        return null; //return null?
     }
 
     public boolean customerExists(Integer userId) {
